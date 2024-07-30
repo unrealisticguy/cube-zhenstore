@@ -30,12 +30,15 @@ export class InlineSystem extends System {
 		const { camera, scene, renderer } = global;
 		this.container = new Mesh(
 			new IcosahedronGeometry(1, 1),
-			new MeshStandardMaterial({ side: BackSide, color: 0x2e2e2e }),
+			// new MeshStandardMaterial({ side: BackSide, color: 0x2e2e2e }),
+			new MeshStandardMaterial({ side: BackSide, color: 0xffffff }),
+
 		);
 		scene.add(this.container);
 		camera.position.set(0, 0.1, 0.4);
-		loader.load('assets/Prop_Camera.glb', (gltf) => {
+		loader.load('assets/rayban_sunglasses.glb', (gltf) => {
 			const model = gltf.scene;
+			model.scale.set(0.1,0.1,0.1);
 			this.container.add(model);
 			model.name = 'mesh-prototype';
 		});
